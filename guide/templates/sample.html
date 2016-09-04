@@ -1,0 +1,314 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<body style="margin-bottom: 0px;
+    margin-top: 0px;
+    margin-left: 0px;
+    margin-right: 0px;">
+<img src='{% static "img/a.jpg" %}' style="    width: 102%;
+    height: 100%;"/>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.5.0/annyang.min.js"></script>
+<script src="https://code.responsivevoice.org/responsivevoice.js"></script>
+<script>
+responsiveVoice.OnVoiceReady=function(){
+	responsiveVoice.speak("Hello! I am your guide. Would you like getting information about a topic or a particular word.");
+}
+
+if (annyang) {
+	console.log("aaaa")
+  // Let's define our first command. First the text we expect, and then the function it should call
+  val1=""
+  var commands = {
+  	'query *val':function(val){
+  		console.log(val);
+  		
+  		console.log("aaa")
+  		console.log(val);
+  		
+  		// for(i=0;i<val.length;i++){
+  		// 	if(i==0 || val[i-1]=="_"){
+  		// 		val=val.substr(0,i)+val[i].toUpperCase()+val.substr(i+1,val.length);
+  		// 	}
+  		// }
+
+  		val1=val
+
+  		console.log("bbb");
+			theUrl="http://localhost:8000/index/?r="+val1   	
+		var xmlHttp = new XMLHttpRequest();
+    	xmlHttp.onreadystatechange = function() { 
+	        if (xmlHttp.readyState == 4 && xmlHttp.status == 200){
+	        	console.log("i am called")
+	        	q=xmlHttp.responseText;
+	        	q=String(q);
+	        	console.log(typeof(q))
+	        	console.log(q[2])
+				word=""
+				meaning=""
+				for(i=0;i<q.length;i++){
+					
+					if(q[i]=="<" && q[i+1]=="m" && q[i+2]=="c" && q[i+3]==">"){
+						console.log("called")
+						i=i+4;
+						while(q[i]!="<"){
+							meaning=meaning+q[i];
+							i++;
+						}
+						break;
+					}
+				}
+
+
+	        	for(i=0;i<q.length;i++){
+	        		if(q[i]=="<" && q[i+1]=="s" && q[i+2]=="y" && q[i+3]=="n" && q[i+4]==">" ){
+	        			count =0
+	        			i=i+5
+	        			while(q[i]!="<" && count<=3){
+	        				if(q[i]!=' '){
+	        					word=word+q[i];
+	        					i++;
+	        				}
+
+
+	        				else{
+	        					count++;
+	        					i++;
+	        				}
+	        				
+	        			}
+	        			break;
+	        		}
+	        	}
+	        	responsiveVoice.speak(" So, meaning of the word "+val+" is "+meaning+" . And the synonyms are "+word);
+	        	responsiveVoice.speak("Can I help you with something else ?");
+
+	        }
+
+	    }
+	    xmlHttp.open("GET", theUrl, true);
+    	xmlHttp.send();
+		console.log("ccc");
+		
+		setTimeout(function(){
+    		//do what you need here
+		}, 5000);
+		
+  		
+  	
+  },
+  	
+  	'find *val':function(val){
+  		console.log(val);
+  		
+  		console.log("aaa")
+  		console.log(val);
+  		val=val.replace(" ","_")
+  		// for(i=0;i<val.length;i++){
+  		// 	if(i==0 || val[i-1]=="_"){
+  		// 		val=val.substr(0,i)+val[i].toUpperCase()+val.substr(i+1,val.length);
+  		// 	}
+  		// }
+
+  		val1=val
+
+  		console.log("bbb");
+			responsiveVoice.speak("do you want summary or complete description");
+		console.log("ccc");
+		setTimeout(function(){
+    		//do what you need here
+		}, 5000);
+		
+  		
+  	},
+
+    'info': function() { 
+		theUrl="http://localhost:8000/index/?q="+val1   	
+		var xmlHttp = new XMLHttpRequest();
+    	xmlHttp.onreadystatechange = function() { 
+	        if (xmlHttp.readyState == 4 && xmlHttp.status == 200){
+	        	console.log("qqqqq")
+	            q=xmlHttp.responseText;
+	            q=JSON.parse(q)
+	            console.log(q)
+	            q=q["query"]["pages"][Object.keys(q["query"]["pages"])]["extract"]
+
+		q=q.replace(/\r?\n|\r/g, "")
+		console.log(q)
+		ans="";
+		for(i=0;i<q.length;i++){
+
+			if(q[i]=="&"){
+				console.log("qqqq");
+				if(i+5<q.length){
+					if(q.substr(i,i+5)=="&amp;"){ //check
+						conole.log("www")
+						i=i+4;
+						ans=ans+"&";
+					}
+				}
+			}
+
+			else if(q[i]=='\\'){
+				if(i+1<q.length){
+					if(q[i+1]=='n'){
+						i++;
+						continue;
+					}
+				}	
+			}
+
+			else if(q[i]=='"'){
+			}
+
+			else if(q[i]=="<"){
+				itr=1;
+				while(itr>0){
+					i++;
+					if(q[i]==">"){
+						itr--;
+					}
+					else if(q[i]=="<"){
+						itr++;
+					}
+				}
+				continue;
+			}
+
+			else{
+				ans=ans+q[i];
+			}
+		}
+    	console.log(ans)
+    	
+			responsiveVoice.speak("So here is the complete information about "+"val1"+" "+ans);
+		
+			annyang.abort()
+		setTimeout(function(){
+    		//do what you need here
+    		console.log("shdsh");
+    		annyang.start()
+		}, 5000);
+
+		
+			responsiveVoice.speak("Can I help you with something else ?");
+			
+			
+			console.log(annyang.isListening())
+			console.log(annyang.debug()) 
+		
+	        }
+	    }
+
+  		xmlHttp.open("GET", theUrl, true);
+    	xmlHttp.send();
+  
+	    
+				 //    xmlHttp.onreadystatechange = function() { 
+				 //        if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+				 //            q=xmlHttp.responseText;
+				 //    }
+					// xmlHttp.open("GET", theUrl, true); 
+				 //    xmlHttp.send();
+	 	
+		
+
+    },
+
+    'summary': function() {
+    	theUrl="http://localhost:8000/index/?p="+val1   	
+		var xmlHttp = new XMLHttpRequest();
+    	xmlHttp.onreadystatechange = function() { 
+	        if (xmlHttp.readyState == 4 && xmlHttp.status == 200){
+	        	console.log("qqqqq")
+	            q=xmlHttp.responseText;
+	            q=JSON.parse(q)
+	            console.log(q)
+	            q=q["query"]["pages"][Object.keys(q["query"]["pages"])]["extract"]
+
+		q=q.replace(/\r?\n|\r/g, "")
+		console.log(q)
+		ans="";
+		for(i=0;i<q.length;i++){
+
+			if(q[i]=="&"){
+				console.log("qqqq");
+				if(i+5<q.length){
+					if(q.substr(i,i+5)=="&amp;"){ //check
+						conole.log("www")
+						i=i+4;
+						ans=ans+"&";
+					}
+				}
+			}
+
+			else if(q[i]=='\\'){
+				if(i+1<q.length){
+					if(q[i+1]=='n'){
+						i++;
+						continue;
+					}
+				}	
+			}
+
+			else if(q[i]=='"'){
+			}
+
+			else if(q[i]=="<"){
+				itr=1;
+				while(itr>0){
+					i++;
+					if(q[i]==">"){
+						itr--;
+					}
+					else if(q[i]=="<"){
+						itr++;
+					}
+				}
+				continue;
+			}
+
+			else{
+				ans=ans+q[i];
+			}
+		}
+    	console.log(ans)
+    	
+			responsiveVoice.speak( "Here is the summarized and most relevant information found related to " +" "+ans);
+		
+			annyang.abort()
+		setTimeout(function(){
+    		//do what you need here
+    		console.log("shdsh");
+    		annyang.start()
+		}, 5000);
+
+		
+			responsiveVoice.speak("Can I help you with something else ?");
+			
+			
+			console.log(annyang.isListening())
+			console.log(annyang.debug()) 
+		
+	        }
+	    }
+
+  		xmlHttp.open("GET", theUrl, true);
+    	xmlHttp.send();
+    }
+
+  };
+
+  // Add our commands to annyang
+  annyang.addCommands(commands);
+  annyang.debug();
+  // Start listening. You can call this here, or attach this call to an event, button, etc.
+  setTimeout(function(){
+    		//do what you need here
+		}, 50000);
+  annyang.start();
+}
+</script>
+</body>
+</html>
