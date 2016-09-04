@@ -3,10 +3,10 @@
 
 ##Contents
 * [About the project](#about-the-project)  
-* [What does it do?](#what-does-it-do?)
+* [What does it do?](#what-does-it-do-?)
 * [Installation](#installation)
 * [Core Team](#core-team)
-* [Questions or need help?](#questions-or-need-help?)
+* [Questions or need help?](#questions-or-need-help-?)
 
 ###About the project
 REVIVIFY was built under **Code-N-Counter** Hackathon hosted by, **Nagarro**. PN is the solution to the problem faced by the visually impaired people in order to get access to education.
