@@ -9,7 +9,7 @@
 * [Questions or need help](#questions-or-need-help)
 
 ###About the project
-REVIVIFY was built under **Code-N-Counter** Hackathon hosted by, **Nagarro**. PN is the solution to the problem faced by the visually impaired people in order to get access to education.
+REVIVIFY was built under **Code-N-Counter** Hackathon hosted by, **Nagarro**. REVIVIFY is the solution to the problem faced by the visually impaired people in order to get access to education.
 It is the cheapest, fastest and most efficient way for getting information, by interacting with the system through voice.
 
 ###Uses
@@ -21,7 +21,7 @@ The system is able to provide information without any need of visual interaction
 
 ###Installation
 * Clone the repository using the following command.
-  `git clone https://github.com/sidgupta234/NagarroHackFinal/`
+  `git clone https://github.com/sidgupta234/Revivify/`
 
 * Goto to the directory containing manage.py file and write the given command in terminal.
 * `python manage.py runserver` 
