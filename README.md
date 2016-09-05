@@ -23,8 +23,9 @@ The system is able to provide information without any need of visual interaction
 * Clone the repository using the following command.
   `git clone https://github.com/sidgupta234/Revivify/`
 
-* Goto to the directory containing manage.py file and write the given command in terminal.
-* `python manage.py runserver` 
+* Goto to the directory containing manage.py file and write the given command in terminal. 
+        
+  `python manage.py runserver` 
 
 #####Core Team
 ######[Shubham Mittal](https://github.com/shubhm96)
