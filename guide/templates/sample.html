@@ -17,15 +17,15 @@ responsiveVoice.OnVoiceReady=function(){
 }
 
 if (annyang) {
-	console.log("aaaa")
+	console.log("aaaa") <!-- for debugging -->
   // Let's define our first command. First the text we expect, and then the function it should call
   val1=""
   var commands = {
   	'query *val':function(val){
-  		console.log(val);
+  		console.log(val); <!-- for debugging -->
   		
-  		console.log("aaa")
-  		console.log(val);
+  		console.log("aaa") <!-- for debugging -->
+  		console.log(val); <!-- for debugging -->
   		
   		// for(i=0;i<val.length;i++){
   		// 	if(i==0 || val[i-1]=="_"){
@@ -50,7 +50,7 @@ if (annyang) {
 				for(i=0;i<q.length;i++){
 					
 					if(q[i]=="<" && q[i+1]=="m" && q[i+2]=="c" && q[i+3]==">"){
-						console.log("called")
+						console.log("called") <!-- for debugging -->
 						i=i+4;
 						while(q[i]!="<"){
 							meaning=meaning+q[i];
@@ -89,7 +89,7 @@ if (annyang) {
 	    }
 	    xmlHttp.open("GET", theUrl, true);
     	xmlHttp.send();
-		console.log("ccc");
+		console.log("ccc"); <!-- for debugging -->
 		
 		setTimeout(function(){
     		//do what you need here
@@ -100,10 +100,10 @@ if (annyang) {
   },
   	
   	'find *val':function(val){
-  		console.log(val);
+  		console.log(val); <!-- for debugging -->
   		
-  		console.log("aaa")
-  		console.log(val);
+  		console.log("aaa") <!-- for debugging -->
+  		console.log(val); <!-- for debugging -->
   		val=val.replace(" ","_")
   		// for(i=0;i<val.length;i++){
   		// 	if(i==0 || val[i-1]=="_"){
@@ -113,9 +113,9 @@ if (annyang) {
 
   		val1=val
 
-  		console.log("bbb");
+  		console.log("bbb"); <!-- for debugging -->
 			responsiveVoice.speak("do you want summary or complete description");
-		console.log("ccc");
+		console.log("ccc"); <!-- for debugging -->
 		setTimeout(function(){
     		//do what you need here
 		}, 5000);
@@ -128,22 +128,22 @@ if (annyang) {
 		var xmlHttp = new XMLHttpRequest();
     	xmlHttp.onreadystatechange = function() { 
 	        if (xmlHttp.readyState == 4 && xmlHttp.status == 200){
-	        	console.log("qqqqq")
+	        	console.log("qqqqq") <!-- for debugging -->
 	            q=xmlHttp.responseText;
 	            q=JSON.parse(q)
-	            console.log(q)
+	            console.log(q) <!-- for debugging -->
 	            q=q["query"]["pages"][Object.keys(q["query"]["pages"])]["extract"]
 
 		q=q.replace(/\r?\n|\r/g, "")
-		console.log(q)
+		console.log(q) <!-- for debugging -->
 		ans="";
 		for(i=0;i<q.length;i++){
 
 			if(q[i]=="&"){
-				console.log("qqqq");
+				console.log("qqqq"); <!-- for debugging -->
 				if(i+5<q.length){
 					if(q.substr(i,i+5)=="&amp;"){ //check
-						conole.log("www")
+						conole.log("www") <!-- for debugging -->
 						i=i+4;
 						ans=ans+"&";
 					}
@@ -180,14 +180,14 @@ if (annyang) {
 				ans=ans+q[i];
 			}
 		}
-    	console.log(ans)
+    	console.log(ans) <!-- for debugging -->
     	
 			responsiveVoice.speak("So here is the complete information about "+"val1"+" "+ans);
 		
 			annyang.abort()
 		setTimeout(function(){
     		//do what you need here
-    		console.log("shdsh");
+    		console.log("shdsh"); <!-- for debugging -->
     		annyang.start()
 		}, 5000);
 
@@ -195,8 +195,8 @@ if (annyang) {
 			responsiveVoice.speak("Can I help you with something else ?");
 			
 			
-			console.log(annyang.isListening())
-			console.log(annyang.debug()) 
+			console.log(annyang.isListening()) <!-- for debugging -->
+			console.log(annyang.debug()) <!-- for debugging -->
 		
 	        }
 	    }
@@ -221,22 +221,22 @@ if (annyang) {
 		var xmlHttp = new XMLHttpRequest();
     	xmlHttp.onreadystatechange = function() { 
 	        if (xmlHttp.readyState == 4 && xmlHttp.status == 200){
-	        	console.log("qqqqq")
+	        	console.log("qqqqq") <!-- for debugging -->
 	            q=xmlHttp.responseText;
 	            q=JSON.parse(q)
-	            console.log(q)
+	            console.log(q) <!-- for debugging -->
 	            q=q["query"]["pages"][Object.keys(q["query"]["pages"])]["extract"]
 
 		q=q.replace(/\r?\n|\r/g, "")
-		console.log(q)
+		console.log(q) <!-- for debugging -->
 		ans="";
 		for(i=0;i<q.length;i++){
 
 			if(q[i]=="&"){
-				console.log("qqqq");
+				console.log("qqqq"); <!-- for debugging -->
 				if(i+5<q.length){
 					if(q.substr(i,i+5)=="&amp;"){ //check
-						conole.log("www")
+						conole.log("www") <!-- for debugging -->
 						i=i+4;
 						ans=ans+"&";
 					}
@@ -273,14 +273,14 @@ if (annyang) {
 				ans=ans+q[i];
 			}
 		}
-    	console.log(ans)
+    	console.log(ans) <!-- for debugging -->
     	
 			responsiveVoice.speak( "Here is the summarized and most relevant information found related to " +" "+ans);
 		
 			annyang.abort()
 		setTimeout(function(){
     		//do what you need here
-    		console.log("shdsh");
+    		console.log("shdsh"); <!-- for debugging -->
     		annyang.start()
 		}, 5000);
 
@@ -288,8 +288,8 @@ if (annyang) {
 			responsiveVoice.speak("Can I help you with something else ?");
 			
 			
-			console.log(annyang.isListening())
-			console.log(annyang.debug()) 
+			console.log(annyang.isListening()) <!-- for debugging -->
+			console.log(annyang.debug())  <!-- for debugging -->
 		
 	        }
 	    }
