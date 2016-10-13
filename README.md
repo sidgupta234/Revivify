@@ -22,7 +22,7 @@ The system is able to provide information without any need of visual interaction
 ###Installation
 * Clone the repository using the following command. <br>
   `git clone https://github.com/sidgupta234/Revivify/` <br><br>
-* Go into the Revivify directory and run the following command. <br> 
+* Go into the Revivify directory and run the following command in the terminal. <br> 
   `pip install -r requirements.txt`<br><br>
 * Goto to the directory containing manage.py file and write the given command in terminal. <br>
   `python manage.py runserver` <br><br>
