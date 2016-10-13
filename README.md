@@ -20,12 +20,12 @@ The system is able to provide information without any need of visual interaction
 * the meaning and synonym of a word.
 
 ###Installation
-* Clone the repository using the following command.
-  `git clone https://github.com/sidgupta234/Revivify/`
-
-* Goto to the directory containing manage.py file and write the given command in terminal. 
-        
-  `python manage.py runserver` 
+* Clone the repository using the following command. <br>
+  `git clone https://github.com/sidgupta234/Revivify/` <br><br>
+* Go into the Revivify directory and run the following command. <br> 
+  `pip install -r requirements.txt`<br><br>
+* Goto to the directory containing manage.py file and write the given command in terminal. <br>
+  `python manage.py runserver` <br><br>
 
 #####Core Team
 ######[Shubham Mittal](https://github.com/shubhm96)
