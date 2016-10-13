@@ -20,6 +20,7 @@ The system is able to provide information without any need of visual interaction
 * the meaning and synonym of a word.
 
 ###Installation
+* Get [Python 2.7](https://www.python.org/download/releases/2.7/)<br><br>
 * Clone the repository using the following command. <br>
   `git clone https://github.com/sidgupta234/Revivify/` <br><br>
 * Go into the Revivify directory and run the following command in the terminal. <br> 
